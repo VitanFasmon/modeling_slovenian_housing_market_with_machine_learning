@@ -1,0 +1,114 @@
+
+Project title:
+
+Modeling Housing Supply and Construction Costs in Slovenia using Bootstrapping, Monte Carlo Simulation, and Machine Learning
+
+Goal:
+
+	To analyze how construction activity (building permits) and construction costs (indices) interact over time in Slovenia, and to use data-driven methods to:
+
+		Quantify uncertainty in observed data using bootstrapping,
+
+		Simulate possible future outcomes with Monte Carlo simulations, and
+
+		Predict future building activity or costs using scikit-learn regression models.
+2. Data sources and description
+
+You’ll use two open datasets from OPSI (podatki.gov.si)
+Building permits dataset
+
+	Title: “Stavbe, za katere so bila izdana gradbena dovoljenja, Slovenija, mesečno”
+
+	Frequency: Monthly
+
+	Key features:
+
+		Date (month)
+
+		Type of building (residential/non-residential)
+
+		Number of permits or floor area (m²)
+
+	→ Proxy for future housing supply
+Construction cost index dataset
+
+	Title: “Indeksi gradbenih stroškov za nova stanovanja v gradbeništvu (četrtletje / povprečje leta 2021), Slovenija, četrtletno”
+
+	Frequency: Quarterly
+
+	Key features:
+
+		Date (quarter)
+
+		Index values for construction materials, labor, total cost
+
+		Relative to base year (2021 = 100)
+
+	→ Proxy for cost of building new housing
+3. Data preparation
+	Steps:
+
+		Load datasets (pandas.read_csv() or read_excel())
+
+		Convert dates to datetime format.
+
+		Aggregate or resample both datasets to a common frequency (e.g., quarterly).
+
+		Join datasets on the date column.
+
+		Handle missing values — use interpolation, forward-fill, or bootstrap resampling.
+
+		Normalize or scale numerical columns (for scikit-learn models).
+4. Bootstrapping — estimate uncertainty
+
+	You can use bootstrapping to understand the uncertainty in average or trend statistics.
+
+	Example:
+
+	Estimate confidence intervals for the average number of residential permits per quarter.
+5. Monte Carlo simulation — model possible futures
+
+	Monte Carlo is for probabilistic forecasting — generating possible future values based on historical variability.
+
+	Example idea:
+
+	Simulate the next 8 quarters (2 years) of building permits, assuming:
+
+	You know the historical mean and variance.
+
+	You model random variations using normal or empirical distributions.
+6. Scikit-learn model — predictive learning
+
+	Now add a predictive component using scikit-learn.
+	This links construction costs to building activity.
+
+	Example: Linear regression
+
+	Try predicting building permits using construction cost indices and past permit data.
+7. Visualization
+
+Use matplotlib and seaborn for:
+
+	Historical trends (time series)
+
+	Bootstrapped distributions (histograms)
+
+	Monte Carlo projections (shaded prediction intervals)
+
+	Actual vs predicted permits (regression plots)
+8. Interpretation & discussion
+
+	Now interpret what your models mean for the Slovenian housing market:
+
+	If construction costs continue to rise (e.g., due to inflation and labor shortages), our model predicts that the number of building permits will likely decline over the next two years.
+
+	Monte Carlo simulations show a 70% probability that future building activity will stay below pre-2021 levels, implying a potential continuation of housing supply shortages and affordability challenges.
+9. Incorporate Python Flux (web dashboard)
+
+	You can use Python Flux (or Streamlit/Dash) to create a small interactive dashboard where:
+
+	The user selects a date range or scenario (e.g., cost increase +5%),
+
+	The app visualizes predicted permit numbers and uncertainty.
+
+	That’s great for your seminar presentation.
