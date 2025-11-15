@@ -1,0 +1,18 @@
+MONTE CARLO SIMULATION RESULTS
+============================================================
+
+Simulation Parameters:
+  - Initial Price: €166,795.77
+  - Annual Drift: 0.062009
+  - Annual Volatility: 0.111427
+  - Time Horizon: 2 years
+  - Simulations: 10,000
+
+Final Price Distribution (8 Quarters Ahead):
+  - Mean: €188,934.58
+  - Median: €186,803.24
+  - Std Dev: €30,060.74
+  - Min: €103,140.08
+  - Max: €344,095.95
+  - 95% CI: €137,008.03 - €253,352.23
+  - P(increase): 76.1%
