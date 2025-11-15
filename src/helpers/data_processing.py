@@ -96,7 +96,7 @@ def clean_building_permits_data(df: pd.DataFrame) -> pd.DataFrame:
         df: Raw building permits DataFrame
     
     Returns:
-        DataFrame with columns: date, num_buildings
+        DataFrame with columns: date, num_building_permits
     """
     COLUMN_MAPPING = {
         "INVESTITOR": "investor",
@@ -121,7 +121,7 @@ def clean_building_permits_data(df: pd.DataFrame) -> pd.DataFrame:
         mask &= df[col] == val
 
     df_filtered = df[mask].dropna(subset=["value"])
-    result = df_filtered[["date", "value"]].rename(columns={"value": "num_buildings"})
+    result = df_filtered[["date", "value"]].rename(columns={"value": "num_building_permits"})
     
     logger.info(f"Cleaned building permits: {len(result)} months")
     return result
@@ -264,7 +264,7 @@ def merge_quarterly_data(
         sales_df: Optional quarterly residential sales DataFrame
     
     Returns:
-        Merged DataFrame with columns: date, num_buildings, construction_cost_index,
+        Merged DataFrame with columns: date, num_building_permits, construction_cost_index,
         (optionally) num_residential_sales, avg_price_eur
     """
     p = permits_df.copy()
@@ -295,15 +295,19 @@ def merge_quarterly_data(
         if col in merged.columns:
             merged = merged.drop(columns=[col])
 
-    if "num_buildings" not in merged.columns and "value" in merged.columns:
-        merged = merged.rename(columns={"value": "num_buildings"})
+    # Support both legacy and new column names. Prefer `num_building_permits`.
+    if "num_building_permits" not in merged.columns:
+        if "num_buildings" in merged.columns:
+            merged = merged.rename(columns={"num_buildings": "num_building_permits"})
+        elif "value" in merged.columns:
+            merged = merged.rename(columns={"value": "num_building_permits"})
 
     if "construction_cost_index" not in merged.columns and "index_value" in merged.columns:
         merged = merged.rename(columns={"index_value": "construction_cost_index"})
 
-    merged = merged.dropna(subset=["num_buildings", "construction_cost_index"])
+    merged = merged.dropna(subset=["num_building_permits", "construction_cost_index"])
 
-    cols = ["date", "num_buildings", "construction_cost_index"]
+    cols = ["date", "num_building_permits", "construction_cost_index"]
     if "num_residential_sales" in merged.columns:
         cols.append("num_residential_sales")
     if "avg_price_eur" in merged.columns:
@@ -330,7 +334,7 @@ def validate_merged_data(df: pd.DataFrame) -> dict:
     """
     warnings = []
 
-    required_cols = ["date", "num_buildings", "construction_cost_index"]
+    required_cols = ["date", "num_building_permits", "construction_cost_index"]
     for col in required_cols:
         if col not in df.columns:
             warnings.append(f"Missing required column: {col}")
@@ -349,7 +353,7 @@ def validate_merged_data(df: pd.DataFrame) -> dict:
         warnings.append(f"Missing quarters: {sorted(missing)}")
 
     # Outlier detection
-    numeric_cols = ["num_buildings", "construction_cost_index"]
+    numeric_cols = ["num_building_permits", "construction_cost_index"]
     if "num_residential_sales" in df.columns:
         numeric_cols.append("num_residential_sales")
     if "avg_price_eur" in df.columns:
