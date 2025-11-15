@@ -1,0 +1,259 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- Section 1: Original Data -->
+<section id="original-data" class="py-5">
+  <div class="container">
+    <h2 class="h3 mb-3">Original Data</h2>
+    <p class="text-muted">
+      Cleaned and parsed quarterly data combining building permits, construction
+      costs, residential sales, and average prices from Slovenian statistical
+      sources. This forms the foundation for all downstream analyses.
+    </p>
+
+    <div class="row">
+      {% if original_images %} {% for img in original_images %}
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <img
+            class="card-img-top img-fluid h-100"
+            loading="lazy"
+            src="{{ url_for('serve_figure', section='original_data', filename=img) }}"
+            alt="Original data figure"
+          />
+          <div class="card-body">
+            <p class="card-text small text-muted mb-0">{{ img }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-12">
+        <div class="alert alert-info">
+          No original data figures found. Please run
+          <code>01_data_cleaning.ipynb</code>.
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Bootstrap Analysis -->
+<section id="bootstrap" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="h3 mb-3">Bootstrap Analysis</h2>
+    <p class="text-muted">
+      Bootstrap resampling quantifies statistical uncertainty by repeatedly
+      sampling with replacement. These visualizations show the distribution of
+      key metrics and their confidence intervals.
+    </p>
+
+    <div class="row">
+      {% if bootstrap_images %} {% for img in bootstrap_images %}
+      <div class="col-12">
+        <div class="card shadow-sm h-100">
+          <img
+            class="card-img-top img-fluid h-100"
+            loading="lazy"
+            src="{{ url_for('serve_figure', section='bootstrap', filename=img) }}"
+            alt="Bootstrap figure"
+          />
+          <div class="card-body">
+            <p class="card-text small text-muted mb-0">{{ img }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-12">
+        <div class="alert alert-info">
+          No bootstrap figures found. Please run
+          <code>02_bootstrap_analysis.ipynb</code>.
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if bootstrap_table is not none %}
+    <div class="mt-4">
+      <h5>Bootstrap Summary</h5>
+      <div class="table-responsive">
+        {{ bootstrap_table.to_html(classes='table table-striped table-sm',
+        index=False) | safe }}
+      </div>
+      <p class="small text-muted mt-2">
+        Full CSV:
+        <a
+          href="{{ url_for('serve_result', section='bootstrap', filename='bootstrap_summary.csv') }}"
+          download
+          >bootstrap_summary.csv</a
+        >
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Section 3: Monte Carlo Simulation -->
+<section id="montecarlo" class="py-5">
+  <div class="container">
+    <h2 class="h3 mb-3">Monte Carlo Simulation</h2>
+    <p class="text-muted">
+      Monte Carlo methods simulate thousands of possible future scenarios based
+      on stochastic models. The results provide probabilistic forecasts and
+      uncertainty bounds for price trajectories.
+    </p>
+
+    <div class="row">
+      {% if montecarlo_images %} {% for img in montecarlo_images %}
+      <div class="col-12">
+        <div class="card shadow-sm h-100">
+          <img
+            class="card-img-top img-fluid h-100"
+            loading="lazy"
+            src="{{ url_for('serve_figure', section='montecarlo', filename=img) }}"
+            alt="Monte Carlo figure"
+          />
+          <div class="card-body">
+            <p class="card-text small text-muted mb-0">{{ img }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-12">
+        <div class="alert alert-info">
+          No Monte Carlo figures found. Please run
+          <code>03_montecarlo_simulation.ipynb</code>.
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if montecarlo_table is not none %}
+    <div class="mt-4">
+      <h5>Monte Carlo Summary</h5>
+      <div class="table-responsive">
+        {{ montecarlo_table.to_html(classes='table table-striped table-sm',
+        index=False) | safe }}
+      </div>
+      <p class="small text-muted mt-2">
+        Full CSV:
+        <a
+          href="{{ url_for('serve_result', section='montecarlo', filename='montecarlo_summary.csv') }}"
+          download
+          >montecarlo_summary.csv</a
+        >
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Section 4: ML Prediction -->
+<section id="ml-prediction" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="h3 mb-3">Machine Learning Prediction</h2>
+    <p class="text-muted">
+      Supervised learning models (Linear Regression, Random Forest, Gradient
+      Boosting) predict future prices based on historical patterns. The
+      best-performing model generates an 8-quarter forecast with stability
+      constraints.
+    </p>
+
+    <div class="row">
+      {% if ml_images %} {% for img in ml_images %}
+      <div class="col-12">
+        <div class="card shadow-sm h-100">
+          <img
+            class="card-img-top img-fluid h-100"
+            loading="lazy"
+            src="{{ url_for('serve_figure', section='ml_prediction', filename=img) }}"
+            alt="ML prediction figure"
+          />
+          <div class="card-body">
+            <p class="card-text small text-muted mb-0">{{ img }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-12">
+        <div class="alert alert-info">
+          No ML figures found. Please run <code>04_ml_prediction.ipynb</code>.
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if ml_model_table is not none %}
+    <div class="mt-4">
+      <h5>Model Performance Comparison</h5>
+      <div class="table-responsive">
+        {{ ml_model_table.to_html(classes='table table-striped table-sm',
+        index=False) | safe }}
+      </div>
+      <p class="small text-muted mt-2">
+        Full CSV:
+        <a
+          href="{{ url_for('serve_result', section='ml_prediction', filename='ml_model_comparison.csv') }}"
+          download
+          >ml_model_comparison.csv</a
+        >
+      </p>
+    </div>
+    {% endif %}
+
+    <div class="row g-4 mt-2">
+      {% if fi_rf is not none %}
+      <div class="col-lg-6">
+        <h6>Random Forest — Feature Importance</h6>
+        <div class="table-responsive">
+          {{ fi_rf.to_html(classes='table table-striped table-sm', index=False)
+          | safe }}
+        </div>
+        <p class="small text-muted mt-2">
+          CSV:
+          <a
+            href="{{ url_for('serve_result', section='ml_prediction', filename='feature_importance_rf.csv') }}"
+            download
+            >feature_importance_rf.csv</a
+          >
+        </p>
+      </div>
+      {% endif %} {% if fi_gb is not none %}
+      <div class="col-lg-6">
+        <h6>Gradient Boosting — Feature Importance</h6>
+        <div class="table-responsive">
+          {{ fi_gb.to_html(classes='table table-striped table-sm', index=False)
+          | safe }}
+        </div>
+        <p class="small text-muted mt-2">
+          CSV:
+          <a
+            href="{{ url_for('serve_result', section='ml_prediction', filename='feature_importance_gb.csv') }}"
+            download
+            >feature_importance_gb.csv</a
+          >
+        </p>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if ml_forecast is not none %}
+    <div class="mt-4">
+      <h5>8-Quarter Price Forecast</h5>
+      <div class="table-responsive">
+        {{ ml_forecast.to_html(classes='table table-striped table-sm',
+        index=False) | safe }}
+      </div>
+      <p class="small text-muted mt-2">
+        Full CSV:
+        <a
+          href="{{ url_for('serve_result', section='ml_prediction', filename='price_forecast.csv') }}"
+          download
+          >price_forecast.csv</a
+        >
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
