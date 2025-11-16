@@ -1,0 +1,53 @@
+Priloga 1:​
+​
+Refleksija: Temelji računalniških znanj (mag. program)
+​
+1. Uvodni opis
+-​
+-​
+-​
+Kratko opiši namen in potek vseh treh vaj.
+Katero temo ali problem si izbral/-a za vsako vajo in zakaj?
+Kako se tvoje izbrane vaje med seboj povezujejo (če se)?
+​
+2. Analitični del (raziskovalni pristop)
+-​
+-​
+-​
+-​
+Kaj si s posamezno vajo želel/-a raziskati ali preizkusiti?
+Katere koncepte (npr. Bootstrap, Flask, Pandas, statistične metode) si moral/-a poglobljeno
+razumeti, da si nalogo uspešno izvedel/-a?
+Kje si naletel/-a na meje svojega znanja in kako si jih presegel/-a (viri, eksperimenti,
+ChatGPT, dokumentacija, posvet s sošolci)?
+Kako bi lahko svoj pristop izboljšal/-a, če bi imel/-a več časa ali podatkov?​
+3. Aplikativni del (povezava z realnim svetom)
+-​
+-​
+-​
+Kje vidiš dejansko dejansko uporabno vrednost tvoje rešitve (v raziskavah, podjetjih,
+podatkovnih analizah, družbenih aplikacijah) ali kakšen je tvoj namen tutoriala/opisa, ki si
+ga predstavil na podstraneh tvoje osebne vizitke?
+Katere realne podatke bi bilo smiselno uporabiti za nadgradnjo tvojega primera?
+Vidiš manjši projekt ali mikro-raziskavo za uporabo teh treh orodij v praksi, oziroma kateri
+del?​
+4. Refleksija o učenju
+-​
+-​
+-​
+Katere računalniške in raziskovalne kompetence si pridobil/-a (npr. obvladovanje knjižnic,
+razumevanje strukture podatkov, znanje prikaza rezultatov)?
+Kaj si se naučil/-a o povezovanju računalništva in raziskovalnega razmišljanja?
+Kako se je spremenilo tvoje razumevanje vloge programiranja v tvojem strokovnem ali
+raziskovalnem delu glede na tvoja predhodna znanja?​
+5. Zaključek (osebni vpogled in načrt nadaljnjega razvoja)
+-​
+Kaj bi bila tvoja naslednja razvojna ali raziskovalna stopnja na tem področju?
+2TEMELJI RAČUNALNIŠKIH ZNANJ - generacija 2025/2026
+​
+Pripravil izred. prof. Matej Mertik
+-​
+-​
+Kako bi znanje, pridobljeno v teh vajah, vključil/-a v svoj magistrski projekt ali poklicno
+prakso?
+Ena poved: Kaj mi je ta predmet omogočil razumeti, kar prej nisem znal/-a razumeti?​

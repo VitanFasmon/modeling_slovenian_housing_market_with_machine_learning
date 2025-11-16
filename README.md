@@ -323,7 +323,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🔗 Links
 
-- **GitHub Repository:** https://github.com/VitanFasmon/temelji_racunalniskih_znanj_final_project
+- **GitHub Repository:** https://github.com/VitanFasmon/modeling_slovenian_housing_market_with_machine_learning
 - **SURS Data:** https://podatki.gov.si
 - **Flask Documentation:** https://flask.palletsprojects.com/
 - **Scikit-learn:** https://scikit-learn.org/
