@@ -307,9 +307,7 @@ jupyter nbconvert --execute --to notebook 04_ml_prediction.ipynb
 ## 📚 Documentation
 
 - **[DOCKER_README.md](DOCKER_README.md)** - Docker setup and instructions
-- **[src/report/README.md](src/report/README.md)** - Overview of seminar reports
-- **[src/report/REPORT_DEL_1_RAZISKOVALNO_APLIKATIVNI_SEMINAR.md](src/report/REPORT_DEL_1_RAZISKOVALNO_APLIKATIVNI_SEMINAR.md)** - Research analysis (IMRAD, in Slovenian)
-- **[src/report/PRILOGA_1_REFLEKSIJA.md](src/report/PRILOGA_1_REFLEKSIJA.md)** - Personal reflection (in Slovenian)
+- **[src/report/ENGLISH_REPORT.md](src/report/ENGLISH_REPORT.md)** - Overview of seminar reports
 
 ## 🤝 Contributions
 
